@@ -1,26 +1,19 @@
 n = int(input())
 
-numbers = [list(map(str,input().split())) for _ in range(n)]
-# string을 미리 넣어준 이유는, 나중에 쪼개기 위해서
+numbers = [list(map(int,input().split())) for _ in range(n)]
 
 answer = 0
 
-# (1) 세 자리 숫자 만들기
 for a in range(1,10): # 100의 자리수
     for b in range(1,10): # 10의 자리수
         for c in range(1,10): # 1의 자리수
-            counter = 0
+            count = 0
             
-            # (2) 다른 세 자리수
-            if( a == b or b == c or c == a):
+            if( a == b or b == c or c == a): #세 자리수가 다 다르기 때문에
                 continue
-            
-            # continue, 그 숫자를 넘김
-            # break, 반복문을 넘김
-
-            # (3) 배열에 넣은 조건을 넣어주기
+        
             for array in numbers:
-                check = list(array[0]) # ['1','2','3']
+                hint = list(str(array[0])) # ['1','2','3']
                 strike = int(array[1])
                 ball = int(array[2])
 
@@ -28,32 +21,31 @@ for a in range(1,10): # 100의 자리수
                 ball_count = 0
 
                 #스트라이크 계산기
-                if (a == int(check[0])):
+                if (a == int(hint[0])):
                     strike_count += 1
-                if (b == int(check[1])):
+                if (b == int(hint[1])):
                     strike_count += 1
-                if (c == int(check[2])):
+                if (c == int(hint[2])):
                     strike_count += 1
                 
 
                 #볼 계산기
-                if (a == int(check[1]) or a == int(check[2])):
+                if (a == int(hint[1]) or a == int(hint[2])):
                     ball_count += 1
-                if (b == int(check[0]) or b == int(check[2])):
+                if (b == int(hint[0]) or b == int(hint[2])):
                     ball_count += 1
-                if (c == int(check[0]) or c == int(check[1])):
+                if (c == int(hint[0]) or c == int(hint[1])):
                     ball_count += 1
                 
                 
                 #(4) 매칭 여부 확인하기
-                if (strike != strike_count):
+                if (strike == strike_count) and (ball == ball_count):
+                    count+= 1 
+                else :
                     break
-                if (ball != ball_count):
-                    break
-                
-                counter += 1
 
-            if counter == n:
+
+            if count == n:
                 answer += 1
                 
 print(answer)
