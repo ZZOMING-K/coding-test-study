@@ -1,15 +1,14 @@
-n = int(input())
-mem = list(map(int,input().split()))
-#오름차순정렬
-mem.sort()
+N = int(input())
+P_list = list(map(int,input().split())) 
 
-time_sum = []
+#시간 오름차순 정렬 
+P_list = sorted(P_list) 
 
-result = 0
-for i in mem :
-    result += i 
-    time_sum.append(result)
+time = 0 
+sum_time = 0 
 
-print(sum(time_sum))
-    
-    
+for p in P_list : 
+    time += p 
+    sum_time += time 
+
+print(sum_time)
