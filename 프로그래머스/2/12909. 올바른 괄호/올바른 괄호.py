@@ -1,13 +1,19 @@
 def solution(s):
     
-    stack = []
+    s_list = [] 
+    
+    for ss in s: 
+        
+        if (len(s_list) > 0)  and (s_list[-1] == '(') and (ss == ')') :
+            s_list.pop()
+        else : 
+            s_list.append(ss)  
+    
+    if s_list :
+        answer = False
+    else :
+        answer = True  
+    return answer 
 
-    for char in s :
-        
-        if char =='(':
-            stack.append(char)
-        
-        elif not stack or stack.pop() != '(' :
-            return False
-            
-    return len(stack) == 0 
+
+    
